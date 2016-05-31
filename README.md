@@ -11,7 +11,7 @@ The cube faces are labelled:
 * U up
 * D down
 * L left
-* r right
+* R right
 
 The vertices are numbered as follows:
 
@@ -31,7 +31,7 @@ The user can move the camera using a Gamepad.
 
 ### Screenshot
 
-!(https://github.com/wjsrobertson/aframe-cube/blob/master/img/screenshot.png)
+![](https://github.com/wjsrobertson/aframe-cube/blob/master/img/screenshot.png)
 
 ### License
 
