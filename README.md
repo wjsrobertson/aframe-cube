@@ -31,7 +31,7 @@ The user can move the camera using a Gamepad.
 
 ### Screenshot
 
-!(img/screenshot.png)
+!(https://github.com/wjsrobertson/aframe-cube/blob/master/img/screenshot.png)
 
 ### License
 
