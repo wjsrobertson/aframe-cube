@@ -1,0 +1,58 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <script src="js/aframe.min.js"></script>
+    <script src="js/GameModel.js"></script>
+    <script src="js/GamepadHandler.js"></script>
+    <script src="js/UserInputHandler.js"></script>
+    <script src="js/game.js"></script>
+</head>
+<body>
+<a-scene>
+    <a-assets>
+        <img id="v0" src="img/0.png">
+        <img id="v1" src="img/1.png">
+        <img id="v2" src="img/2.png">
+        <img id="v3" src="img/3.png">
+        <img id="v4" src="img/4.png">
+        <img id="v5" src="img/5.png">
+        <img id="v6" src="img/6.png">
+        <img id="v7" src="img/7.png">
+        <img id="F" src="img/F.png">
+        <img id="B" src="img/B.png">
+        <img id="L" src="img/L.png">
+        <img id="R" src="img/R.png">
+        <img id="U" src="img/U.png">
+        <img id="D" src="img/D.png">
+        <img id="space" src="img/seamless_space.png">
+    </a-assets>
+
+    <a-sphere id="vertex_0" position="0 0 0" radius="0.2" material="src: #v0; repeat: 5 5"></a-sphere>
+    <a-sphere id="vertex_3" position="1 0 0" radius="0.2" material="src: #v3; repeat: 5 5"></a-sphere>
+    <a-sphere id="vertex_1" position="0 0 1" radius="0.2" material="src: #v1; repeat: 5 5"></a-sphere>
+    <a-sphere id="vertex_4" position="0 1 0" radius="0.2" material="src: #v4; repeat: 5 5"></a-sphere>
+    <a-sphere id="vertex_7" position="1 1 0" radius="0.2" material="src: #v7; repeat: 5 5"></a-sphere>
+    <a-sphere id="vertex_5" position="0 1 1" radius="0.2" material="src: #v5; repeat: 5 5"></a-sphere>
+    <a-sphere id="vertex_2" position="1 0 1" radius="0.2" material="src: #v2; repeat: 5 5"></a-sphere>
+    <a-sphere id="vertex_6" position="1 1 1" radius="0.2" material="src: #v6; repeat: 5 5"></a-sphere>
+
+    <a-box id="face_f" position="0.5 0.5 0  " material="src: #F;"  depth="0.2" height="0.2" width="0.2"></a-box>
+    <a-box id="face_b" position="0.5 0.5 1  " material="src: #B;"  depth="0.2" height="0.2" width="0.2"></a-box>
+    <a-box id="face_l" position="0   0.5 0.5" material="src: #L;"  depth="0.2" height="0.2" width="0.2"></a-box>
+    <a-box id="face_r" position="1   0.5 0.5" material="src: #R;"  depth="0.2" height="0.2" width="0.2"></a-box>
+    <a-box id="face_u" position="0.5 1   0.5" material="src: #U;"  depth="0.2" height="0.2" width="0.2"></a-box>
+    <a-box id="face_d" position="0.5 0   0.5" material="src: #D;"  depth="0.2" height="0.2" width="0.2"></a-box>
+
+    <a-entity id="camera" position="0.5 0.5 0.5" rotation="0 0 0">
+        <a-camera near="0.1" fov="80"></a-camera>
+    </a-entity>
+
+    <a-sky material="src: #space; repeat: 5 5"></a-sky>
+
+    <script>
+        init();
+    </script>
+
+</a-scene>
+</body>
+</html>
