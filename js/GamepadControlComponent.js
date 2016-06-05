@@ -4,20 +4,26 @@ var CubeDemo = CubeDemo || {};
 
 CubeDemo.GamepadControlComponent = function (gamepadStateReader) {
 
-    function calculateVelocity(currentVelocity, rotation, speed) {
+    function calculateVelocity(currentVelocity, rotation, gamepadState, speed) {
+        if (!gamepadState.backward && !gamepadState.forward) {
+            return currentVelocity;
+        }
+
+        var scaleBy = (gamepadState.forward) ? speed : -speed;
         let elevation = (rotation.x / 180) * Math.PI;
         let heading = (rotation.y / 180) * Math.PI;
 
         return {
-            x: currentVelocity.x + (speed * -Math.sin(heading) * Math.cos(elevation)),
-            y: currentVelocity.y + (speed * Math.sin(elevation)),
-            z: currentVelocity.z + (speed * -Math.cos(elevation) * Math.cos(heading))
+            x: currentVelocity.x + (scaleBy * -Math.sin(heading) * Math.cos(elevation)),
+            y: currentVelocity.y + (scaleBy * Math.sin(elevation)),
+            z: currentVelocity.z + (scaleBy * -Math.cos(elevation) * Math.cos(heading))
         };
     }
 
     function calculateRotation(currentRotation, gamepadState, rotationSpeed) {
         var xRotation = currentRotation.x;
         var yRotation = currentRotation.y;
+        var zRotation = currentRotation.z;
 
         if (gamepadState.left) {
             yRotation += rotationSpeed;
@@ -34,7 +40,7 @@ CubeDemo.GamepadControlComponent = function (gamepadStateReader) {
         return {
             x: xRotation,
             y: yRotation,
-            z: currentRotation.z
+            z: zRotation
         };
     }
 
@@ -55,9 +61,9 @@ CubeDemo.GamepadControlComponent = function (gamepadStateReader) {
             var newRotation = calculateRotation(rotation, gamepadState, rotationSpeed);
             el.setAttribute('rotation', newRotation);
 
-            if (gamepadState.accelerate) {
-                el.setAttribute('velocity', calculateVelocity(velocity, rotation, speed));
-            }
+            var newVelocity = calculateVelocity(velocity, rotation, gamepadState, speed);
+            el.setAttribute('velocity', newVelocity);
+
         }
     }
 };

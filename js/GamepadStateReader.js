@@ -11,8 +11,9 @@ CubeDemo.GamepadStateReader = function () {
         right: [15],
         up: [12],
         down: [13],
-        accelerate: [0, 2, 6, 7],
-        newGame: [9]
+        forward: [0, 6, 7],
+        backward: [2, 4, 5],
+        reset: [9]
     };
 
     var axes = {
@@ -56,7 +57,8 @@ CubeDemo.GamepadStateReader = function () {
             right: false,
             up: false,
             down: false,
-            accelerate: false,
+            forward: false,
+            backward: false,
             newGame: false
         };
     }
@@ -76,12 +78,14 @@ CubeDemo.GamepadStateReader = function () {
             state.down = true;
         }
 
-        if (isButtonPressed(buttons.accelerate)) {
-            state.accelerate = true;
+        if (isButtonPressed(buttons.forward)) {
+            state.forward = true;
+        } else if (isButtonPressed(buttons.backward)) {
+            state.backward = true;
         }
 
-        if (isButtonPressed(buttons.newGame)) {
-            state.newGame = true;
+        if (isButtonPressed(buttons.reset)) {
+            state.reset = true;
         }
 
         return state;
