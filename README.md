@@ -1,7 +1,7 @@
 A-Frame Cube
 ============
 
-A small JavaScript app for figuring out the basics of A-Frame.
+A small JavaScript app for figuring out the basics of [A-Frame](https://aframe.io/).
 
 This demo consists of a cube composed of a numbered sphere at each vertex and a labelled cube in the centre of each face. The camera is placed in the centre of the cube, looking into the screen direction vector (0,0,-1) - which corresponds to rotation (0, 0, 0) in aframe. The user can move the camera using a gamepad.
 
