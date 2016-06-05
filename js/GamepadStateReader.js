@@ -1,4 +1,8 @@
-GamepadHandler = function (userInputProcessor) {
+"use strict";
+
+var CubeDemo = CubeDemo || {};
+
+CubeDemo.GamepadStateReader = function () {
 
     var axisThreshold = 0.3;
 
@@ -26,14 +30,14 @@ GamepadHandler = function (userInputProcessor) {
 
     function isButtonPressed(buttonIds) {
         var gamepad = getGamepad();
-        return buttonIds.some(function(buttonId) {
+        return buttonIds.some(function (buttonId) {
             return gamepad && gamepad.buttons[buttonId] && gamepad.buttons[buttonId].pressed;
         });
     }
 
     function isAxisNegative(axisIds) {
         var gamepad = getGamepad();
-        return axisIds.some(function(axisId) {
+        return axisIds.some(function (axisId) {
             return gamepad && gamepad.axes[axisId] < -axisThreshold;
         });
     }
@@ -41,38 +45,51 @@ GamepadHandler = function (userInputProcessor) {
 
     function isAxisPositive(axisIds) {
         var gamepad = getGamepad();
-        return axisIds.some(function(axisId) {
+        return axisIds.some(function (axisId) {
             return gamepad && gamepad.axes[axisId] > axisThreshold;
         });
     }
 
-    function handleGamepad() {
+    function emptyState() {
+        return {
+            left: false,
+            right: false,
+            up: false,
+            down: false,
+            accelerate: false,
+            newGame: false
+        };
+    }
+
+    function getCurrentGamepadState() {
+        var state = emptyState();
+
         if (isButtonPressed(buttons.left) || isAxisNegative(axes.horizontal)) {
-            userInputProcessor.left();
-        } else if (isButtonPressed(buttons.right)  || isAxisPositive(axes.horizontal)) {
-            userInputProcessor.right();
+            state.left = true;
+        } else if (isButtonPressed(buttons.right) || isAxisPositive(axes.horizontal)) {
+            state.right = true;
         }
 
         if (isButtonPressed(buttons.up) || isAxisNegative(axes.vertical)) {
-            userInputProcessor.up();
+            state.up = true;
         } else if (isButtonPressed(buttons.down) || isAxisPositive(axes.vertical)) {
-            userInputProcessor.down();
+            state.down = true;
         }
 
         if (isButtonPressed(buttons.accelerate)) {
-            userInputProcessor.accelerate();
+            state.accelerate = true;
         }
 
         if (isButtonPressed(buttons.newGame)) {
-            userInputProcessor.newGame();
+            state.newGame = true;
         }
+
+        return state;
     }
 
     return {
-        tick: function() {
-            if (getGamepad()) {
-                handleGamepad();
-            }
+        getState: function () {
+            return getGamepad() ? getCurrentGamepadState() : emptyState();
         }
     }
 };

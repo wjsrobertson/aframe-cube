@@ -2,10 +2,10 @@
 <head>
     <meta charset="utf-8"/>
     <script src="js/aframe.min.js"></script>
-    <script src="js/GameModel.js"></script>
-    <script src="js/GamepadHandler.js"></script>
-    <script src="js/UserInputHandler.js"></script>
-    <script src="js/game.js"></script>
+    <script src="js/GamepadStateReader.js"></script>
+    <script src="js/GamepadControlComponent.js"></script>
+    <script src="js/components/velocity.js"></script>
+    <script src="js/components/gamepad-control.js"></script>
 </head>
 <body>
 <a-scene>
@@ -43,15 +43,11 @@
     <a-box id="face_u" position="0.5 1   0.5" material="src: #U;"  depth="0.2" height="0.2" width="0.2"></a-box>
     <a-box id="face_d" position="0.5 0   0.5" material="src: #D;"  depth="0.2" height="0.2" width="0.2"></a-box>
 
-    <a-entity id="camera" position="0.5 0.5 0.5" rotation="0 0 0">
+    <a-entity id="camera" position="0.5 0.5 0.5" rotation="0 0 0" velocity="0 0 0" gamepad-control="speed: 0.0005; rotationSpeed: 1">
         <a-camera near="0.1" fov="80"></a-camera>
     </a-entity>
 
     <a-sky material="src: #space; repeat: 5 5"></a-sky>
-
-    <script>
-        init();
-    </script>
 
 </a-scene>
 </body>
